@@ -2,6 +2,10 @@
 // -------------
 // Runs the core gameplay loop
 Crafty.scene('Game', function() {
+
+
+
+
 	// A 2D array to keep track of all occupied tiles
 	this.occupied = new Array(Game.map_grid.width);
 	for (var i = 0; i < Game.map_grid.width; i++) {
@@ -11,9 +15,16 @@ Crafty.scene('Game', function() {
 		}
 	}
 
+
+
+
 	// Player character, placed at 5, 5 on our grid
 	this.player = Crafty.e('PlayerCharacter').at(5, 5);
 	this.occupied[this.player.at().x][this.player.at().y] = true;
+
+
+
+
 
 	// Place a tree at every edge square on our grid of 16x16 tiles
 	for (var x = 0; x < Game.map_grid.width; x++) {
@@ -22,16 +33,19 @@ Crafty.scene('Game', function() {
 
 			if (at_edge) {
 				// Place a tree entity at the current tile
-				Crafty.e('Tree').at(x, y)
+				Crafty.e('Stone').at(x, y)
 				this.occupied[x][y] = true;
+
 			} else if (Math.random() < 0.06 && !this.occupied[x][y]) {
-				// Place a bush entity at the current tile
-				var bush_or_rock = (Math.random() > 0.3) ? 'Bush' : 'Rock'
-				Crafty.e(bush_or_rock).at(x, y)
+				Crafty.e('Brick').at(x, y)
 				this.occupied[x][y] = true;
 			}
 		}
 	}
+
+
+
+
 
 	// Generate five villages on the map in random locations
 	var max_villages = 5;
@@ -45,8 +59,14 @@ Crafty.scene('Game', function() {
 		}
 	}
 
+
+
+
 	// Play a ringing sound to indicate the start of the journey
 	Crafty.audio.play('ring');
+
+
+
 
 	// Show the victory screen once all villages are visisted
 	this.show_victory = this.bind('VillageVisited', function() {
@@ -54,12 +74,25 @@ Crafty.scene('Game', function() {
 			Crafty.scene('Victory');
 		}
 	});
+
+
+
+
+
 }, function() {
 	// Remove our event binding from above so that we don't
 	//  end up having multiple redundant event watchers after
 	//  multiple restarts of the game
 	this.unbind('VillageVisited', this.show_victory);
 });
+
+
+
+
+
+
+
+
 
 
 // Victory scene
@@ -91,6 +124,16 @@ Crafty.scene('Victory', function() {
 	//  multiple restarts of the game
 	this.unbind('KeyDown', this.restart_game);
 });
+
+
+
+
+
+
+
+
+
+
 
 // Loading scene
 // -------------
@@ -127,15 +170,22 @@ Crafty.scene('Loading', function(){
 		Crafty.sprite(16, 'assets/16x16_forest_2.gif', {
 			spr_tree:    [0, 0],
 			spr_bush:    [1, 0],
-			spr_village: [0, 1],
-			spr_rock:    [1, 1]
+			spr_village: [0, 1]
 		});
 
 		// Define the PC's sprite to be the first sprite in the third row of the
 		//  animation sprite map
-		Crafty.sprite(16, 'assets/hunter.png', {
-			spr_player:  [0, 2],
-		}, 0, 2);
+		Crafty.sprite(51, 77, 'assets/green-player.png', {
+			spr_player:  [0, 0],
+		}, 0, 0);
+
+		Crafty.sprite(40, 36, 'assets/stone.png', {
+			spr_stone:  [0, 0],
+		}, 0, 0);
+
+		Crafty.sprite(40, 36, 'assets/brick.png', {
+			spr_brick:  [0, 0],
+		}, 0, 0);
 
 		// Define our sounds for later use
 		Crafty.audio.add({

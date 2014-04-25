@@ -28,9 +28,9 @@ Crafty.c('Actor', {
 });
 
 // A Tree is just an Actor with a certain sprite
-Crafty.c('Tree', {
+Crafty.c('Stone', {
   init: function() {
-    this.requires('Actor, Solid, spr_tree');
+    this.requires('Actor, Solid, spr_stone');
   },
 });
 
@@ -42,9 +42,9 @@ Crafty.c('Bush', {
 });
 
 // A Rock is just an Actor with a certain sprite
-Crafty.c('Rock', {
+Crafty.c('Brick', {
   init: function() {
-    this.requires('Actor, Solid, spr_rock');
+    this.requires('Actor, Solid, spr_brick');
   },
 });
 
@@ -61,10 +61,10 @@ Crafty.c('PlayerCharacter', {
       //  - the x and y coordinates within the sprite
       //     map at which the animation set begins
       //  - the number of animation frames *in addition to* the first one
-      .reel('PlayerMovingUp',    600, 0, 0, 3)
-      .reel('PlayerMovingRight', 600, 0, 1, 3)
-      .reel('PlayerMovingDown',  600, 0, 2, 3)
-      .reel('PlayerMovingLeft',  600, 0, 3, 3);
+      .reel('PlayerMovingUp',    500, 0, 1, 15)
+      .reel('PlayerMovingRight', 500, 0, 0, 15)
+      .reel('PlayerMovingDown',  500, 0, 2, 15)
+      .reel('PlayerMovingLeft',  500, 0, 3, 15);
 
     // Watch for a change of direction and switch animations accordingly
     var animation_speed = 4;
