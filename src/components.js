@@ -23,7 +23,7 @@ Crafty.c('Grid', {
 //  via our logical coordinate grid
 Crafty.c('Actor', {
   init: function() {
-    this.requires('2D, Canvas, Grid');
+    this.requires('2D, Canvas, Grid, Collision');
   },
 });
 
@@ -53,6 +53,7 @@ Crafty.c('PlayerCharacter', {
   init: function() {
     this.requires('Actor, Fourway, Collision, spr_player, SpriteAnimation')
       .fourway(2)
+      .collision([0,40], [51,40], [51,75], [0,75])
       .stopOnSolids()
       .onHit('Village', this.visitVillage)
       // These next lines define our four animations
@@ -81,6 +82,8 @@ Crafty.c('PlayerCharacter', {
         this.pauseAnimation();
       }
     });
+
+    this.z = 1000;  // Hack to get the player in front of everything
   },
 
   // Registers a stop-movement function to be called when
