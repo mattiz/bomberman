@@ -17,15 +17,15 @@ Crafty.scene('Game', function() {
 
 
 
-
+	
 	// Player character, placed at 5, 5 on our grid
-	this.player = Crafty.e('PlayerCharacter').at(5, 5);
-	this.occupied[this.player.at().x][this.player.at().y] = true;
+	this.player = Crafty.e('PlayerCharacter').at(1, 1);
+	this.occupied[1][1] = true;
 
 
 
 
-
+	/*
 	// Place a tree at every edge square on our grid of 16x16 tiles
 	for (var x = 0; x < Game.map_grid.width; x++) {
 		for (var y = 0; y < Game.map_grid.height; y++) {
@@ -58,6 +58,49 @@ Crafty.scene('Game', function() {
 			}
 		}
 	}
+	*/
+
+
+
+
+
+	var tiles = [
+		[0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0],
+		[0, 2, 0, 2, 1, 2, 0, 2, 0, 2, 1, 2, 1, 2, 0],
+		[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+		[0, 2, 0, 2, 0, 2, 0, 2, 1, 2, 0, 2, 0, 2, 1],
+		[1, 1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1],
+		[1, 2, 0, 2, 0, 2, 0, 2, 0, 2, 1, 2, 0, 2, 1],
+		[0, 0, 0, 0, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1],
+		[1, 2, 0, 2, 0, 2, 0, 2, 1, 2, 0, 2, 0, 2, 0],
+		[1, 0, 0, 1, 1, 1, 0, 1, 1, 0, 0, 0, 1, 1, 1],
+		[0, 2, 0, 2, 1, 2, 0, 2, 0, 2, 0, 2, 1, 2, 0],
+		[0, 0, 0, 1, 1, 0, 0, 0, 1, 1, 0, 1, 0, 0, 0]
+	];
+
+	var images = [ '', 'Brick', 'Stone' ];
+
+
+
+
+	for( var y = 0; y < tiles.length; y++ ) {
+		for( var x = 0; x < tiles[y].length; x++ ) {
+			var tile = tiles[y][x];
+			var image = images[ tile ];
+
+			if( tile != 0 ) {
+				Crafty.e( image ).at(x, y)
+				this.occupied[x][y] = true;
+			}
+		}
+	}
+
+
+
+
+
+
+
 
 
 

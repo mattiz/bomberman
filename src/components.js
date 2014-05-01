@@ -53,7 +53,7 @@ Crafty.c('PlayerCharacter', {
   init: function() {
     this.requires('Actor, Fourway, Collision, spr_player, SpriteAnimation')
       .fourway(2)
-      .collision([0,40], [51,40], [51,75], [0,75])
+      .collision([13,55], [37,55], [37,72], [13,72])
       .stopOnSolids()
       .onHit('Village', this.visitVillage)
       // These next lines define our four animations
