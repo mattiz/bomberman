@@ -24,7 +24,7 @@ Game = {
 	// Initialize and start our game
 	start: function() {
 		// Start crafty and set a background color so that we can see it's working
-		Crafty.init(Game.width(), Game.height());
+		Crafty.init(Game.width() + 40, Game.height() + 63 + 18);
 		Crafty.background('url(assets/field.png)');
 
 		// Simply start the "Loading" scene to get things going

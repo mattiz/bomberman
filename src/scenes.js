@@ -19,8 +19,16 @@ Crafty.scene('Game', function() {
 
 	
 	// Player character, placed at 5, 5 on our grid
-	this.player = Crafty.e('PlayerCharacter').at(1, 1);
+	this.player = Crafty.e('PlayerCharacter').atPixels(88, 95);
 	this.occupied[1][1] = true;
+
+
+
+	this.player = Crafty.e('FrameTop').atPixels(0, 0);
+	this.player = Crafty.e('FrameBottom').atPixels(0, 459);
+	this.player = Crafty.e('FrameLeft').atPixels(0, 63);
+	this.player = Crafty.e('FrameRight').atPixels(620, 63);
+	
 
 
 
@@ -228,6 +236,22 @@ Crafty.scene('Loading', function(){
 
 		Crafty.sprite(40, 36, 'assets/brick.png', {
 			spr_brick:  [0, 0],
+		}, 0, 0);
+
+		Crafty.sprite(640, 63, 'assets/frame-top.png', {
+			spr_frame_top:  [0, 0],
+		}, 0, 0);
+
+		Crafty.sprite(640, 18, 'assets/frame-bottom.png', {
+			spr_frame_bottom:  [0, 0],
+		}, 0, 0);
+
+		Crafty.sprite(20, 398, 'assets/frame-left.png', {
+			spr_frame_left:  [0, 0],
+		}, 0, 0);
+
+		Crafty.sprite(20, 398, 'assets/frame-right.png', {
+			spr_frame_right:  [0, 0],
 		}, 0, 0);
 
 		// Define our sounds for later use

@@ -13,10 +13,19 @@ Crafty.c('Grid', {
     if (x === undefined && y === undefined) {
       return { x: this.x/Game.map_grid.tile.width, y: this.y/Game.map_grid.tile.height };
     } else {
-      this.attr({ x: x * Game.map_grid.tile.width, y: y * Game.map_grid.tile.height });
+      this.attr({ x: (x * Game.map_grid.tile.width)+20, y: (y * Game.map_grid.tile.height)+63 });
       return this;
     }
-  }
+  },
+
+  atPixels: function(x, y) {
+      this.attr({
+        x: x,
+        y: y
+      });
+
+      return this;
+    }
 });
 
 // An "Actor" is an entity that is drawn in 2D on canvas
@@ -45,6 +54,30 @@ Crafty.c('Bush', {
 Crafty.c('Brick', {
   init: function() {
     this.requires('Actor, Solid, spr_brick');
+  },
+});
+
+Crafty.c('FrameTop', {
+  init: function() {
+    this.requires('Actor, Solid, spr_frame_top');
+  },
+});
+
+Crafty.c('FrameBottom', {
+  init: function() {
+    this.requires('Actor, Solid, spr_frame_bottom');
+  },
+});
+
+Crafty.c('FrameLeft', {
+  init: function() {
+    this.requires('Actor, Solid, spr_frame_left');
+  },
+});
+
+Crafty.c('FrameRight', {
+  init: function() {
+    this.requires('Actor, Solid, spr_frame_right');
   },
 });
 
