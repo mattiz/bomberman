@@ -36,6 +36,15 @@ Crafty.c('Actor', {
   },
 });
 
+Crafty.c('Bomb', {
+  init: function() {
+    this.requires('Actor, Solid, spr_bomb, SpriteAnimation')
+      .reel('Exploding', 1000, 0, 0, 20);
+
+    this.animate('Exploding', -1);
+  },
+});
+
 // A Tree is just an Actor with a certain sprite
 Crafty.c('Stone', {
   init: function() {

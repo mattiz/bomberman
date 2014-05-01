@@ -23,6 +23,12 @@ Crafty.scene('Game', function() {
 	this.occupied[1][1] = true;
 
 
+	this.player = Crafty.e('Bomb').at(0, 0);
+	this.player = Crafty.e('Bomb').at(1, 0);
+	this.player = Crafty.e('Bomb').at(2, 0);
+	
+
+
 
 	this.player = Crafty.e('FrameTop').atPixels(0, 0);
 	this.player = Crafty.e('FrameBottom').atPixels(0, 459);
@@ -228,6 +234,10 @@ Crafty.scene('Loading', function(){
 		//  animation sprite map
 		Crafty.sprite(51, 77, 'assets/green-player.png', {
 			spr_player:  [0, 0],
+		}, 0, 0);
+
+		Crafty.sprite(40, 36, 'assets/bomb.png', {
+			spr_bomb:  [0, 0],
 		}, 0, 0);
 
 		Crafty.sprite(40, 36, 'assets/stone.png', {

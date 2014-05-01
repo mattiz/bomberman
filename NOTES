@@ -1,0 +1,1 @@
+montage `ls BM*.png` `ls BM*.png | sort -r` -tile 20x1 -geometry +2+0 -background transparent -transparent black bomb.png
