@@ -23,9 +23,9 @@ Crafty.scene('Game', function() {
 	this.occupied[1][1] = true;
 
 
-	this.player = Crafty.e('Bomb').at(0, 0);
-	this.player = Crafty.e('Bomb').at(1, 0);
-	this.player = Crafty.e('Bomb').at(2, 0);
+	//this.player = Crafty.e('Bomb').at(0, 0);
+	//this.player = Crafty.e('Bomb').at(1, 0);
+	//this.player = Crafty.e('Bomb').at(2, 0);
 	
 
 

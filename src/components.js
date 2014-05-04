@@ -25,7 +25,15 @@ Crafty.c('Grid', {
       });
 
       return this;
-    }
+    },
+
+    position: function() {
+      var x = Math.floor( this.x / Game.map_grid.tile.width );
+      var y = Math.floor( this.y / Game.map_grid.tile.height );
+      //console.log("x: " + x + ', y: ' + y);
+
+      return {x: x, y: y};
+    },
 });
 
 // An "Actor" is an entity that is drawn in 2D on canvas
@@ -38,7 +46,7 @@ Crafty.c('Actor', {
 
 Crafty.c('Bomb', {
   init: function() {
-    this.requires('Actor, Solid, spr_bomb, SpriteAnimation')
+    this.requires('Actor, spr_bomb, SpriteAnimation')
       .reel('Exploding', 1000, 0, 0, 20);
 
     this.animate('Exploding', -1);
@@ -98,6 +106,14 @@ Crafty.c('PlayerCharacter', {
       .collision([13,55], [37,55], [37,72], [13,72])
       .stopOnSolids()
       .onHit('Village', this.visitVillage)
+      .bind('KeyDown', function(e) {
+        if( e.key == Crafty.keys.SPACE ) {
+          //Crafty.e('Bomb').atPixels(this.x, this.y);
+          //console.log('test: ' + this.x + ', ' + this.y);
+          var pos = this.position();
+          Crafty.e('Bomb').at(pos.x, pos.y);
+        }
+      })
       // These next lines define our four animations
       //  each call to .animate specifies:
       //  - the name of the animation
