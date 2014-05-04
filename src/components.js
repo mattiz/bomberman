@@ -53,6 +53,48 @@ Crafty.c('Bomb', {
   },
 });
 
+Crafty.c('FlameTop', {
+  init: function() {
+    this.requires('Actor, spr_flame_top');
+  },
+});
+
+Crafty.c('FlameCenter', {
+  init: function() {
+    this.requires('Actor, spr_flame_center');
+  },
+});
+
+Crafty.c('FlameBottom', {
+  init: function() {
+    this.requires('Actor, spr_flame_bottom');
+  },
+});
+
+Crafty.c('FlameLeft', {
+  init: function() {
+    this.requires('Actor, spr_flame_left');
+  },
+});
+
+Crafty.c('FlameRight', {
+  init: function() {
+    this.requires('Actor, spr_flame_right');
+  },
+});
+
+Crafty.c('FlameVertical', {
+  init: function() {
+    this.requires('Actor, spr_flame_vertical');
+  },
+});
+
+Crafty.c('FlameHorizontal', {
+  init: function() {
+    this.requires('Actor, spr_flame_horizontal');
+  },
+});
+
 // A Tree is just an Actor with a certain sprite
 Crafty.c('Stone', {
   init: function() {

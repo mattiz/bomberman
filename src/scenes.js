@@ -30,12 +30,15 @@ Crafty.scene('Game', function() {
 
 
 
-	this.player = Crafty.e('FrameTop').atPixels(0, 0);
-	this.player = Crafty.e('FrameBottom').atPixels(0, 459);
-	this.player = Crafty.e('FrameLeft').atPixels(0, 63);
-	this.player = Crafty.e('FrameRight').atPixels(620, 63);
+	Crafty.e('FrameTop').atPixels(0, 0);
+	Crafty.e('FrameBottom').atPixels(0, 459);
+	Crafty.e('FrameLeft').atPixels(0, 63);
+	Crafty.e('FrameRight').atPixels(620, 63);
 	
 
+
+
+	
 
 
 
@@ -111,8 +114,26 @@ Crafty.scene('Game', function() {
 
 
 
+	function explode( x, y, length ) {
+		Crafty.e('FlameCenter').at(x, y);
+
+		for( var i = 1; i < length; i++ ) {
+			Crafty.e('FlameHorizontal').at(x+i, y);		// right arm
+			Crafty.e('FlameHorizontal').at(x-i, y);		// left arm
+			Crafty.e('FlameVertical').at(x, y-i);		// top arm
+			Crafty.e('FlameVertical').at(x, y+i);		// bottom arm
+		}
+
+		Crafty.e('FlameRight').at(x+length, y);
+		Crafty.e('FlameLeft').at(x-length, y);
+		Crafty.e('FlameTop').at(x, y-length);
+		Crafty.e('FlameBottom').at(x, y+length);
+	}
 
 
+	explode( 4, 2, 2 );
+	explode( 9, 4, 1 );
+	explode( 6, 8, 4 );
 
 
 
@@ -239,6 +260,16 @@ Crafty.scene('Loading', function(){
 		Crafty.sprite(40, 36, 'assets/bomb.png', {
 			spr_bomb:  [0, 0],
 		}, 0, 0);
+
+		Crafty.sprite(41, 37, 'assets/flame.png', {
+			spr_flame_bottom:     [2, 0],
+			spr_flame_center:     [2, 1],
+			spr_flame_vertical:   [2, 2],
+			spr_flame_left:       [2, 3],
+			spr_flame_horizontal: [2, 4],
+			spr_flame_right:      [2, 5],
+			spr_flame_top:        [2, 7],
+		});
 
 		Crafty.sprite(40, 36, 'assets/stone.png', {
 			spr_stone:  [0, 0],
