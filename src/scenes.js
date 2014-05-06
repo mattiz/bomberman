@@ -6,27 +6,13 @@ Crafty.scene('Game', function() {
 
 
 
-	// A 2D array to keep track of all occupied tiles
-	this.occupied = new Array(Game.map_grid.width);
-	for (var i = 0; i < Game.map_grid.width; i++) {
-		this.occupied[i] = new Array(Game.map_grid.height);
-		for (var y = 0; y < Game.map_grid.height; y++) {
-			this.occupied[i][y] = false;
-		}
-	}
 
 
 
 	
 	// Player character, placed at 5, 5 on our grid
 	this.player = Crafty.e('PlayerCharacter').atPixels(88, 95);
-	this.occupied[1][1] = true;
 
-
-	//this.player = Crafty.e('Bomb').at(0, 0);
-	//this.player = Crafty.e('Bomb').at(1, 0);
-	//this.player = Crafty.e('Bomb').at(2, 0);
-	
 
 
 
@@ -107,7 +93,6 @@ Crafty.scene('Game', function() {
 
 			if( tile != 0 ) {
 				Crafty.e( image ).at(x, y)
-				this.occupied[x][y] = true;
 			}
 		}
 	}
@@ -115,24 +100,81 @@ Crafty.scene('Game', function() {
 
 
 	function explode( x, y, length ) {
+		var flameTop = true;
+		var flameDown = true;
+		var flameLeft = true;
+		var flameRight = true;
+
 		Crafty.e('FlameCenter').at(x, y);
 
 		for( var i = 1; i < length; i++ ) {
-			Crafty.e('FlameHorizontal').at(x+i, y);		// right arm
-			Crafty.e('FlameHorizontal').at(x-i, y);		// left arm
-			Crafty.e('FlameVertical').at(x, y-i);		// top arm
-			Crafty.e('FlameVertical').at(x, y+i);		// bottom arm
+			if( tileAt(x+i, y) == 0 ) {
+				Crafty.e('FlameHorizontal').at(x+i, y);		// right arm
+			} else {
+				flameRight = false;
+				break;
+			}
 		}
 
-		Crafty.e('FlameRight').at(x+length, y);
-		Crafty.e('FlameLeft').at(x-length, y);
-		Crafty.e('FlameTop').at(x, y-length);
-		Crafty.e('FlameBottom').at(x, y+length);
+		for( var i = 1; i < length; i++ ) {
+			if( tileAt(x-i, y) == 0 ) {
+				Crafty.e('FlameHorizontal').at(x-i, y);		// left arm
+			} else {
+				flameLeft = false;
+				break;
+			}
+		}
+
+		for( var i = 1; i < length; i++ ) {
+			if( tileAt(x, y-i) == 0 ) {
+				Crafty.e('FlameVertical').at(x, y-i);		// top arm
+			} else {
+				flameTop = false;
+				break;
+			}
+		}
+		
+		for( var i = 1; i < length; i++ ) {
+			if( tileAt(x, y+i) == 0 ) {
+				Crafty.e('FlameVertical').at(x, y+i);		// bottom arm
+			} else {
+				flameBottom = false;
+				break;
+			}
+		}
+
+		if( tileAt(x+length, y) == 0 && flameRight ) {
+			Crafty.e('FlameRight').at(x+length, y);
+		}
+
+		if( tileAt(x-length, y) == 0 && flameLeft ) {
+			Crafty.e('FlameLeft').at(x-length, y);
+		}
+
+		if( tileAt(x, y-length) == 0 && flameTop ) {
+			Crafty.e('FlameTop').at(x, y-length);
+		}
+
+		if( tileAt(x, y+length) == 0 && flameBottom ) {
+			Crafty.e('FlameBottom').at(x, y+length);
+		}
 	}
 
 
-	explode( 4, 2, 2 );
-	explode( 9, 4, 1 );
+	function tileAt( x, y ) {
+		if( x < 0 || y < 0 || x > (Game.map_grid.width-1) || y > (Game.map_grid.height-1) ) {
+			return 2;
+		} else {
+			return tiles[y][x];
+		}
+	}
+
+
+
+	explode( 5, 2, 3 );
+	explode( 0, 6, 3 );
+	explode( 11, 2, 1 );
+	explode( 12, 5, 1 );
 	explode( 6, 8, 4 );
 
 
