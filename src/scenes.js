@@ -101,15 +101,23 @@ Crafty.scene('Game', function() {
 
 	function explode( x, y, length ) {
 		var flameTop = true;
-		var flameDown = true;
+		var flameBottom = true;
 		var flameLeft = true;
 		var flameRight = true;
+
+		var removeTiles = [];
 
 		Crafty.e('FlameCenter').at(x, y);
 
 		for( var i = 1; i < length; i++ ) {
-			if( tileAt(x+i, y) == 0 ) {
+			if( tileAt(x+i, y) != 2 ) {
 				Crafty.e('FlameHorizontal').at(x+i, y);		// right arm
+
+				if( tileAt(x+i, y) == 1 ) {
+					removeTiles.push( [x+i, y] );
+					flameRight = false;
+					break;
+				}
 			} else {
 				flameRight = false;
 				break;
@@ -117,8 +125,14 @@ Crafty.scene('Game', function() {
 		}
 
 		for( var i = 1; i < length; i++ ) {
-			if( tileAt(x-i, y) == 0 ) {
+			if( tileAt(x-i, y) != 2 ) {
 				Crafty.e('FlameHorizontal').at(x-i, y);		// left arm
+
+				if( tileAt(x-i, y) == 1 ) {
+					removeTiles.push( [x-i, y] );
+					flameLeft = false;
+					break;
+				}
 			} else {
 				flameLeft = false;
 				break;
@@ -126,8 +140,14 @@ Crafty.scene('Game', function() {
 		}
 
 		for( var i = 1; i < length; i++ ) {
-			if( tileAt(x, y-i) == 0 ) {
+			if( tileAt(x, y-i) != 2 ) {
 				Crafty.e('FlameVertical').at(x, y-i);		// top arm
+
+				if( tileAt(x, y-i) == 1 ) {
+					removeTiles.push( [x, y-i] );
+					flameTop = false;
+					break;
+				}
 			} else {
 				flameTop = false;
 				break;
@@ -135,8 +155,14 @@ Crafty.scene('Game', function() {
 		}
 		
 		for( var i = 1; i < length; i++ ) {
-			if( tileAt(x, y+i) == 0 ) {
+			if( tileAt(x, y+i) != 2 ) {
 				Crafty.e('FlameVertical').at(x, y+i);		// bottom arm
+
+				if( tileAt(x, y+i) == 1 ) {
+					removeTiles.push( [x, y+i] );
+					flameBottom = false;
+					break;
+				}
 			} else {
 				flameBottom = false;
 				break;
@@ -158,6 +184,8 @@ Crafty.scene('Game', function() {
 		if( tileAt(x, y+length) == 0 && flameBottom ) {
 			Crafty.e('FlameBottom').at(x, y+length);
 		}
+
+		console.log(removeTiles);
 	}
 
 
