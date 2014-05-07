@@ -50,48 +50,66 @@ Crafty.c('Bomb', {
       .reel('Exploding', 1000, 0, 0, 20);
 
     this.animate('Exploding', -1);
+	
+	var that = this;
+	setTimeout( function() {
+		var pos = that.position();
+		that.destroy();
+		Crafty.explode( pos.x, pos.y-1, 3 );
+	}, 2000);
+  },
+});
+
+Crafty.c('Flame', {
+  init: function() {
+    this.requires('Actor');
+	
+	var that = this;
+	setTimeout( function() {
+		that.destroy();
+	}, 1000);
   },
 });
 
 Crafty.c('FlameTop', {
   init: function() {
-    this.requires('Actor, spr_flame_top');
+    this.requires('Actor, spr_flame_top, Flame');
   },
 });
 
 Crafty.c('FlameCenter', {
   init: function() {
-    this.requires('Actor, spr_flame_center');
+    this.requires('Actor, spr_flame_center, Flame');
   },
 });
 
 Crafty.c('FlameBottom', {
   init: function() {
-    this.requires('Actor, spr_flame_bottom');
+    this.requires('Actor, spr_flame_bottom, Flame');
   },
 });
 
 Crafty.c('FlameLeft', {
   init: function() {
-    this.requires('Actor, spr_flame_left');
+    this.requires('Actor, spr_flame_left, Flame');
   },
 });
 
 Crafty.c('FlameRight', {
   init: function() {
-    this.requires('Actor, spr_flame_right');
+    this.requires('Actor, spr_flame_right, Flame');
   },
 });
 
 Crafty.c('FlameVertical', {
   init: function() {
-    this.requires('Actor, spr_flame_vertical');
+    this.requires('Actor, spr_flame_vertical, Flame');
   },
 });
 
 Crafty.c('FlameHorizontal', {
   init: function() {
-    this.requires('Actor, spr_flame_horizontal');
+    this.requires('Actor, spr_flame_horizontal, Flame');
   },
 });
 
@@ -112,7 +130,11 @@ Crafty.c('Bush', {
 // A Rock is just an Actor with a certain sprite
 Crafty.c('Brick', {
   init: function() {
-    this.requires('Actor, Solid, spr_brick');
+    this.requires('Actor, Solid, Collision, spr_brick')
+		.onHit('Actor', function() {
+			console.log('Something hit the brick');
+			this.destroy();
+		});
   },
 });
 

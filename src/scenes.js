@@ -99,7 +99,7 @@ Crafty.scene('Game', function() {
 
 
 
-	function explode( x, y, length ) {
+	this.explode = function( x, y, length ) {
 		var flameTop = true;
 		var flameBottom = true;
 		var flameLeft = true;
@@ -199,11 +199,13 @@ Crafty.scene('Game', function() {
 
 
 
+	/*
 	explode( 5, 2, 3 );
 	explode( 0, 6, 3 );
 	explode( 11, 2, 1 );
 	explode( 12, 5, 1 );
 	explode( 6, 8, 4 );
+	*/
 
 
 
