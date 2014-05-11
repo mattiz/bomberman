@@ -60,58 +60,107 @@ Crafty.c('Bomb', {
   },
 });
 
-Crafty.c('Flame', {
+Crafty.c('Flame, SpriteAnimation', {
   init: function() {
     this.requires('Actor');
-	
-    /*
-  	var that = this;
-  	setTimeout( function() {
-  		that.destroy();
-  	}, 1000);
-*/
   },
 });
 
 Crafty.c('FlameTop', {
   init: function() {
-    this.requires('Actor, spr_flame_top, Flame');
+    this.requires('Actor, spr_flame_top, Flame, SpriteAnimation')
+      .reel('FlameFlicker', 1000, 0, 7, 5);
+
+    this.animate('FlameFlicker', -1);
+
+    var that = this;
+    setTimeout( function() {
+      that.destroy();
+    }, 800);
   },
 });
 
 Crafty.c('FlameCenter', {
   init: function() {
-    this.requires('Actor, spr_flame_center, Flame');
+    this.requires('Actor, spr_flame_center, Flame, SpriteAnimation')
+      .reel('FlameFlicker', 1000, 0, 1, 5);
+
+    this.animate('FlameFlicker', -1);
+
+    var that = this;
+    setTimeout( function() {
+      that.destroy();
+    }, 800);
   },
 });
 
 Crafty.c('FlameBottom', {
   init: function() {
-    this.requires('Actor, spr_flame_bottom, Flame');
+    this.requires('Actor, spr_flame_bottom, Flame, SpriteAnimation')
+      .reel('FlameFlicker', 1000, 0, 0, 5);
+
+    this.animate('FlameFlicker', -1);
+
+    var that = this;
+    setTimeout( function() {
+      that.destroy();
+    }, 800);
   },
 });
 
 Crafty.c('FlameLeft', {
   init: function() {
-    this.requires('Actor, spr_flame_left, Flame');
+    this.requires('Actor, spr_flame_left, Flame, SpriteAnimation')
+      .reel('FlameFlicker', 1000, 0, 3, 5);
+
+    this.animate('FlameFlicker', -1);
+
+    var that = this;
+    setTimeout( function() {
+      that.destroy();
+    }, 800);
   },
 });
 
 Crafty.c('FlameRight', {
   init: function() {
-    this.requires('Actor, spr_flame_right, Flame');
+    this.requires('Actor, spr_flame_right, Flame, SpriteAnimation')
+      .reel('FlameFlicker', 1000, 0, 5, 5);
+
+    this.animate('FlameFlicker', -1);
+
+    var that = this;
+    setTimeout( function() {
+      that.destroy();
+    }, 800);
   },
 });
 
 Crafty.c('FlameVertical', {
   init: function() {
-    this.requires('Actor, spr_flame_vertical, Flame');
+    this.requires('Actor, spr_flame_vertical, Flame, SpriteAnimation')
+      .reel('FlameFlicker', 1000, 0, 8, 5);
+
+    this.animate('FlameFlicker', -1);
+
+    var that = this;
+    setTimeout( function() {
+      that.destroy();
+    }, 800);
   },
 });
 
 Crafty.c('FlameHorizontal', {
   init: function() {
-    this.requires('Actor, spr_flame_horizontal, Flame');
+    this.requires('Actor, spr_flame_horizontal, Flame, SpriteAnimation')
+      .reel('FlameFlicker', 1000, 0, 4, 5);
+
+    this.animate('FlameFlicker', -1);
+
+    var that = this;
+    setTimeout( function() {
+      that.destroy();
+    }, 800);
   },
 });
 
@@ -135,7 +184,7 @@ Crafty.c('Brick', {
     this.requires('Actor, Solid, Collision, spr_brick')
 		.onHit('Actor', function() {
 			console.log('Something hit the brick');
-			//this.destroy();
+			this.destroy();
 		});
   },
 });

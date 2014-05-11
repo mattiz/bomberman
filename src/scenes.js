@@ -209,11 +209,13 @@ Crafty.scene('Game', function() {
 
 
 	
+	/*
 	Crafty.explode( 5, 2, 3 );
 	Crafty.explode( 0, 6, 3 );
 	Crafty.explode( 11, 2, 1 );
 	Crafty.explode( 12, 5, 1 );
 	Crafty.explode( 6, 8, 4 );
+	*/
 	
 
 
@@ -343,14 +345,14 @@ Crafty.scene('Loading', function(){
 		}, 0, 0);
 
 		Crafty.sprite(41, 37, 'assets/flame.png', {
-			spr_flame_bottom:     [2, 0],
-			spr_flame_center:     [2, 1],
-			spr_flame_vertical:   [2, 2],
-			spr_flame_left:       [2, 3],
-			spr_flame_horizontal: [2, 4],
-			spr_flame_right:      [2, 5],
-			spr_flame_top:        [2, 7],
-		});
+			spr_flame_bottom:     [0, 0],
+			spr_flame_center:     [0, 1],
+			spr_flame_vertical:   [0, 8],
+			spr_flame_left:       [0, 3],
+			spr_flame_horizontal: [0, 4],
+			spr_flame_right:      [0, 5],
+			spr_flame_top:        [0, 7],
+		}, 0, 0);
 
 		Crafty.sprite(40, 36, 'assets/stone.png', {
 			spr_stone:  [0, 0],
