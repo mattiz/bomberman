@@ -28,42 +28,6 @@ Crafty.scene('Game', function() {
 
 
 
-	/*
-	// Place a tree at every edge square on our grid of 16x16 tiles
-	for (var x = 0; x < Game.map_grid.width; x++) {
-		for (var y = 0; y < Game.map_grid.height; y++) {
-			var at_edge = x == 0 || x == Game.map_grid.width - 1 || y == 0 || y == Game.map_grid.height - 1;
-
-			if (at_edge) {
-				// Place a tree entity at the current tile
-				Crafty.e('Stone').at(x, y)
-				this.occupied[x][y] = true;
-
-			} else if (Math.random() < 0.06 && !this.occupied[x][y]) {
-				Crafty.e('Brick').at(x, y)
-				this.occupied[x][y] = true;
-			}
-		}
-	}
-
-
-
-
-
-	// Generate five villages on the map in random locations
-	var max_villages = 5;
-	for (var x = 0; x < Game.map_grid.width; x++) {
-		for (var y = 0; y < Game.map_grid.height; y++) {
-			if (Math.random() < 0.03) {
-				if (Crafty('Village').length < max_villages && !this.occupied[x][y]) {
-					Crafty.e('Village').at(x, y);
-				}
-			}
-		}
-	}
-	*/
-
-
 
 
 
@@ -105,19 +69,21 @@ Crafty.scene('Game', function() {
 		var flameLeft = true;
 		var flameRight = true;
 
-		var removeTiles = [];
+		var flame = [];
 
 		Crafty.e('FlameCenter').at(x, y);
+		flame.push( [x, y] );
 
 		for( var i = 1; i < length; i++ ) {
 			if( tileAt(x+i, y) != 2 ) {
 				if( tileAt(x+i, y) == 1 ) {
 					Crafty.e('FlameRight').at(x+i, y);
-					removeTiles.push( [x+i, y] );
+					flame.push( [x+i, y] );
 					flameRight = false;
 					break;
 				} else {
 					Crafty.e('FlameHorizontal').at(x+i, y);		// right arm
+					flame.push( [x+i, y] );
 				}
 
 			} else {
@@ -130,11 +96,13 @@ Crafty.scene('Game', function() {
 			if( tileAt(x-i, y) != 2 ) {
 				if( tileAt(x-i, y) == 1 ) {
 					Crafty.e('FlameLeft').at(x-i, y);
-					removeTiles.push( [x-i, y] );
+					flame.push( [x-i, y] );
 					flameLeft = false;
 					break;
+					
 				} else {
 					Crafty.e('FlameHorizontal').at(x-i, y);		// left arm
+					flame.push( [x-i, y] );
 				}
 
 			} else {
@@ -147,12 +115,13 @@ Crafty.scene('Game', function() {
 			if( tileAt(x, y-i) != 2 ) {
 				if( tileAt(x, y-i) == 1 ) {
 					Crafty.e('FlameTop').at(x, y-i);
-					removeTiles.push( [x, y-i] );
+					flame.push( [x, y-i] );
 					flameTop = false;
 					break;
 
 				} else {
 					Crafty.e('FlameVertical').at(x, y-i);		// top arm
+					flame.push( [x, y-i] );
 				}
 
 			} else {
@@ -165,11 +134,12 @@ Crafty.scene('Game', function() {
 			if( tileAt(x, y+i) != 2 ) {
 				if( tileAt(x, y+i) == 1 ) {
 					Crafty.e('FlameBottom').at(x, y+i);
-					removeTiles.push( [x, y+i] );
+					flame.push( [x, y+i] );
 					flameBottom = false;
 					break;
 				} else {
 					Crafty.e('FlameVertical').at(x, y+i);		// bottom arm
+					flame.push( [x, y+i] );
 				}
 
 			} else {
@@ -180,21 +150,25 @@ Crafty.scene('Game', function() {
 
 		if( tileAt(x+length, y) == 0 && flameRight ) {
 			Crafty.e('FlameRight').at(x+length, y);
+			flame.push( [x+length, y] );
 		}
 
 		if( tileAt(x-length, y) == 0 && flameLeft ) {
 			Crafty.e('FlameLeft').at(x-length, y);
+			flame.push( [x-length, y] );
 		}
 
 		if( tileAt(x, y-length) == 0 && flameTop ) {
 			Crafty.e('FlameTop').at(x, y-length);
+			flame.push( [x, y-length] );
 		}
 
 		if( tileAt(x, y+length) == 0 && flameBottom ) {
 			Crafty.e('FlameBottom').at(x, y+length);
+			flame.push( [x, y+length] );
 		}
 
-		console.log(removeTiles);
+		console.log(flame);
 	}
 
 
