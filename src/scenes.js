@@ -111,13 +111,15 @@ Crafty.scene('Game', function() {
 
 		for( var i = 1; i < length; i++ ) {
 			if( tileAt(x+i, y) != 2 ) {
-				Crafty.e('FlameHorizontal').at(x+i, y);		// right arm
-
 				if( tileAt(x+i, y) == 1 ) {
+					Crafty.e('FlameRight').at(x+i, y);
 					removeTiles.push( [x+i, y] );
 					flameRight = false;
 					break;
+				} else {
+					Crafty.e('FlameHorizontal').at(x+i, y);		// right arm
 				}
+
 			} else {
 				flameRight = false;
 				break;
@@ -126,13 +128,15 @@ Crafty.scene('Game', function() {
 
 		for( var i = 1; i < length; i++ ) {
 			if( tileAt(x-i, y) != 2 ) {
-				Crafty.e('FlameHorizontal').at(x-i, y);		// left arm
-
 				if( tileAt(x-i, y) == 1 ) {
+					Crafty.e('FlameLeft').at(x-i, y);
 					removeTiles.push( [x-i, y] );
 					flameLeft = false;
 					break;
+				} else {
+					Crafty.e('FlameHorizontal').at(x-i, y);		// left arm
 				}
+
 			} else {
 				flameLeft = false;
 				break;
@@ -141,13 +145,16 @@ Crafty.scene('Game', function() {
 
 		for( var i = 1; i < length; i++ ) {
 			if( tileAt(x, y-i) != 2 ) {
-				Crafty.e('FlameVertical').at(x, y-i);		// top arm
-
 				if( tileAt(x, y-i) == 1 ) {
+					Crafty.e('FlameTop').at(x, y-i);
 					removeTiles.push( [x, y-i] );
 					flameTop = false;
 					break;
+
+				} else {
+					Crafty.e('FlameVertical').at(x, y-i);		// top arm
 				}
+
 			} else {
 				flameTop = false;
 				break;
@@ -156,13 +163,15 @@ Crafty.scene('Game', function() {
 		
 		for( var i = 1; i < length; i++ ) {
 			if( tileAt(x, y+i) != 2 ) {
-				Crafty.e('FlameVertical').at(x, y+i);		// bottom arm
-
 				if( tileAt(x, y+i) == 1 ) {
+					Crafty.e('FlameBottom').at(x, y+i);
 					removeTiles.push( [x, y+i] );
 					flameBottom = false;
 					break;
+				} else {
+					Crafty.e('FlameVertical').at(x, y+i);		// bottom arm
 				}
+
 			} else {
 				flameBottom = false;
 				break;
@@ -199,13 +208,13 @@ Crafty.scene('Game', function() {
 
 
 
-	/*
-	explode( 5, 2, 3 );
-	explode( 0, 6, 3 );
-	explode( 11, 2, 1 );
-	explode( 12, 5, 1 );
-	explode( 6, 8, 4 );
-	*/
+	
+	Crafty.explode( 5, 2, 3 );
+	Crafty.explode( 0, 6, 3 );
+	Crafty.explode( 11, 2, 1 );
+	Crafty.explode( 12, 5, 1 );
+	Crafty.explode( 6, 8, 4 );
+	
 
 
 

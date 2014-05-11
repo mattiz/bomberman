@@ -51,12 +51,12 @@ Crafty.c('Bomb', {
 
     this.animate('Exploding', -1);
 	
-	var that = this;
-	setTimeout( function() {
-		var pos = that.position();
-		that.destroy();
-		Crafty.explode( pos.x, pos.y-1, 3 );
-	}, 2000);
+  	var that = this;
+  	setTimeout( function() {
+  		var pos = that.position();
+  		that.destroy();
+  		Crafty.explode( pos.x, pos.y-1, 3 );
+  	}, 2000);
   },
 });
 
@@ -64,10 +64,12 @@ Crafty.c('Flame', {
   init: function() {
     this.requires('Actor');
 	
-	var that = this;
-	setTimeout( function() {
-		that.destroy();
-	}, 1000);
+    /*
+  	var that = this;
+  	setTimeout( function() {
+  		that.destroy();
+  	}, 1000);
+*/
   },
 });
 
@@ -133,7 +135,7 @@ Crafty.c('Brick', {
     this.requires('Actor, Solid, Collision, spr_brick')
 		.onHit('Actor', function() {
 			console.log('Something hit the brick');
-			this.destroy();
+			//this.destroy();
 		});
   },
 });
