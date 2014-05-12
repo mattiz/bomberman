@@ -171,6 +171,12 @@ Crafty.c('Stone', {
   },
 });
 
+Crafty.c('Debug', {
+  init: function() {
+    this.requires('Actor, spr_debug');
+  },
+});
+
 // A Bush is just an Actor with a certain sprite
 Crafty.c('Bush', {
   init: function() {
@@ -183,7 +189,9 @@ Crafty.c('Brick', {
   init: function() {
     this.requires('Actor, Solid, Collision, spr_brick')
 		.onHit('Actor', function() {
-			console.log('Something hit the brick');
+			console.log('Something hit this brick: ' + this._x + ', ' + this._y);
+      console.log(this);
+      Crafty.e('Debug').atPixels(this._x, this._y);
 			this.destroy();
 		});
   },

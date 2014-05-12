@@ -168,7 +168,46 @@ Crafty.scene('Game', function() {
 			flame.push( [x, y+length] );
 		}
 
-		console.log(flame);
+
+		for( var i = 0; i < flame.length; i++ ) {
+			var x = flame[i][0];
+			var y = flame[i][1];
+
+			tiles[y][x] = 0;
+		}
+
+
+
+
+		/*
+		for( var yy = 0; yy < tiles.length; yy++ ) {
+			for( var xx = 0; xx < tiles[yy].length; xx++ ) {
+				var tile = tiles[yy][xx];
+
+				if( tile != 0 ) {
+					Crafty.e('Debug').at( xx, yy );
+				}
+			}
+		}
+		*/
+		
+
+		/*
+		for( var yy = 0; yy < tiles.length; yy++ ) {
+			for( var xx = 0; xx < tiles[yy].length; xx++ ) {
+				var tile = tiles[yy][xx];
+				var image = images[ tile ];
+
+				if( tile != 0 ) {
+					Crafty.e( image ).at(xx, yy);
+				}
+			}
+		}
+		*/
+
+
+
+		//console.log(flame);
 	}
 
 
@@ -318,7 +357,11 @@ Crafty.scene('Loading', function(){
 			spr_bomb:  [0, 0],
 		}, 0, 0);
 
-		Crafty.sprite(41, 37, 'assets/flame.png', {
+		Crafty.sprite(40, 36, 'assets/debug.png', {
+			spr_debug:  [0, 0],
+		}, 0, 0);
+
+		Crafty.sprite(40, 36, 'assets/flame.png', {
 			spr_flame_bottom:     [0, 0],
 			spr_flame_center:     [0, 1],
 			spr_flame_vertical:   [0, 8],
@@ -326,7 +369,7 @@ Crafty.scene('Loading', function(){
 			spr_flame_horizontal: [0, 4],
 			spr_flame_right:      [0, 5],
 			spr_flame_top:        [0, 7],
-		}, 0, 0);
+		}, 1, 1);
 
 		Crafty.sprite(40, 36, 'assets/stone.png', {
 			spr_stone:  [0, 0],
