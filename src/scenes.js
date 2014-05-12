@@ -148,22 +148,22 @@ Crafty.scene('Game', function() {
 			}
 		}
 
-		if( tileAt(x+length, y) == 0 && flameRight ) {
+		if( tileAt(x+length, y) != 2 && flameRight ) {
 			Crafty.e('FlameRight').at(x+length, y);
 			flame.push( [x+length, y] );
 		}
 
-		if( tileAt(x-length, y) == 0 && flameLeft ) {
+		if( tileAt(x-length, y) != 2 && flameLeft ) {
 			Crafty.e('FlameLeft').at(x-length, y);
 			flame.push( [x-length, y] );
 		}
 
-		if( tileAt(x, y-length) == 0 && flameTop ) {
+		if( tileAt(x, y-length) != 2 && flameTop ) {
 			Crafty.e('FlameTop').at(x, y-length);
 			flame.push( [x, y-length] );
 		}
 
-		if( tileAt(x, y+length) == 0 && flameBottom ) {
+		if( tileAt(x, y+length) != 2 && flameBottom ) {
 			Crafty.e('FlameBottom').at(x, y+length);
 			flame.push( [x, y+length] );
 		}
