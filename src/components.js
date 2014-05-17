@@ -201,7 +201,23 @@ Crafty.c('Brick', {
     this.requires('Actor, Solid, Collision, spr_brick')
 		.onHit('Flame', function() {
 			this.destroy();
+
+      var pos = this.position();
+      Crafty.e('XBrick').at( pos.x, pos.y-1 );
 		});
+  },
+});
+
+Crafty.c('XBrick', {
+  init: function() {
+    this.requires('Actor, Solid, spr_xbrick, SpriteAnimation')
+      .reel('BrickExplotion', 750, 0, 0, 9);
+
+    this.bind("AnimationEnd",function() {
+      this.destroy();
+    });
+
+    this.animate('BrickExplotion', 1);
   },
 });
 

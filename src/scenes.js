@@ -388,6 +388,10 @@ Crafty.scene('Loading', function(){
 			spr_brick:  [0, 0],
 		}, 0, 0);
 
+		Crafty.sprite(40, 36, 'assets/xbrick.png', {
+			spr_xbrick:  [0, 0],
+		}, 0, 0);
+
 		Crafty.sprite(640, 63, 'assets/frame-top.png', {
 			spr_frame_top:  [0, 0],
 		}, 0, 0);
