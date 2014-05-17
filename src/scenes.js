@@ -75,8 +75,8 @@ Crafty.scene('Game', function() {
 		flame.push( [x, y] );
 
 		for( var i = 1; i < length; i++ ) {
-			if( tileAt(x+i, y) != 2 ) {
-				if( tileAt(x+i, y) == 1 ) {
+			if( Crafty.tileAt(x+i, y) != 2 ) {
+				if( Crafty.tileAt(x+i, y) == 1 ) {
 					Crafty.e('FlameRight').at(x+i, y);
 					flame.push( [x+i, y] );
 					flameRight = false;
@@ -93,8 +93,8 @@ Crafty.scene('Game', function() {
 		}
 
 		for( var i = 1; i < length; i++ ) {
-			if( tileAt(x-i, y) != 2 ) {
-				if( tileAt(x-i, y) == 1 ) {
+			if( Crafty.tileAt(x-i, y) != 2 ) {
+				if( Crafty.tileAt(x-i, y) == 1 ) {
 					Crafty.e('FlameLeft').at(x-i, y);
 					flame.push( [x-i, y] );
 					flameLeft = false;
@@ -112,8 +112,8 @@ Crafty.scene('Game', function() {
 		}
 
 		for( var i = 1; i < length; i++ ) {
-			if( tileAt(x, y-i) != 2 ) {
-				if( tileAt(x, y-i) == 1 ) {
+			if( Crafty.tileAt(x, y-i) != 2 ) {
+				if( Crafty.tileAt(x, y-i) == 1 ) {
 					Crafty.e('FlameTop').at(x, y-i);
 					flame.push( [x, y-i] );
 					flameTop = false;
@@ -131,8 +131,8 @@ Crafty.scene('Game', function() {
 		}
 		
 		for( var i = 1; i < length; i++ ) {
-			if( tileAt(x, y+i) != 2 ) {
-				if( tileAt(x, y+i) == 1 ) {
+			if( Crafty.tileAt(x, y+i) != 2 ) {
+				if( Crafty.tileAt(x, y+i) == 1 ) {
 					Crafty.e('FlameBottom').at(x, y+i);
 					flame.push( [x, y+i] );
 					flameBottom = false;
@@ -148,22 +148,22 @@ Crafty.scene('Game', function() {
 			}
 		}
 
-		if( tileAt(x+length, y) != 2 && flameRight ) {
+		if( Crafty.tileAt(x+length, y) != 2 && flameRight ) {
 			Crafty.e('FlameRight').at(x+length, y);
 			flame.push( [x+length, y] );
 		}
 
-		if( tileAt(x-length, y) != 2 && flameLeft ) {
+		if( Crafty.tileAt(x-length, y) != 2 && flameLeft ) {
 			Crafty.e('FlameLeft').at(x-length, y);
 			flame.push( [x-length, y] );
 		}
 
-		if( tileAt(x, y-length) != 2 && flameTop ) {
+		if( Crafty.tileAt(x, y-length) != 2 && flameTop ) {
 			Crafty.e('FlameTop').at(x, y-length);
 			flame.push( [x, y-length] );
 		}
 
-		if( tileAt(x, y+length) != 2 && flameBottom ) {
+		if( Crafty.tileAt(x, y+length) != 2 && flameBottom ) {
 			Crafty.e('FlameBottom').at(x, y+length);
 			flame.push( [x, y+length] );
 		}
@@ -211,12 +211,21 @@ Crafty.scene('Game', function() {
 	}
 
 
-	function tileAt( x, y ) {
+	this.tileAt = function( x, y ) {
 		if( x < 0 || y < 0 || x > (Game.map_grid.width-1) || y > (Game.map_grid.height-1) ) {
 			return 2;
 		} else {
 			return tiles[y][x];
 		}
+	}
+
+	this.tileOccupied = function( x, y ) {
+		return this.tileAt( x, y ) != 0;
+	}
+
+
+	this.setTileValue = function( x, y, value ) {
+		tiles[y][x] = value;
 	}
 
 

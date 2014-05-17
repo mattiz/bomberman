@@ -239,10 +239,14 @@ Crafty.c('PlayerCharacter', {
       .onHit('Village', this.visitVillage)
       .bind('KeyDown', function(e) {
         if( e.key == Crafty.keys.SPACE ) {
-          //Crafty.e('Bomb').atPixels(this.x, this.y);
-          //console.log('test: ' + this.x + ', ' + this.y);
+
           var pos = this.position();
-          Crafty.e('Bomb').at(pos.x, pos.y);
+
+          if( ! Crafty.tileOccupied( pos.x, pos.y ) ) {
+            Crafty.e('Bomb').at( pos.x, pos.y );
+            Crafty.setTileValue( pos.x, pos.y, 100 ); // is removed when exploding
+          }
+
         }
       })
       // These next lines define our four animations
