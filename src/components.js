@@ -80,7 +80,7 @@ Crafty.c('Flame, SpriteAnimation', {
 Crafty.c('FlameTop', {
   init: function() {
     this.requires('Actor, spr_flame_top, Flame, SpriteAnimation')
-      .reel('FlameFlicker', 1000, 0, 7, 5);
+      .reel('FlameFlicker', 500, 0, 7, 5);
 
     this.animate('FlameFlicker', -1);
 
@@ -94,7 +94,7 @@ Crafty.c('FlameTop', {
 Crafty.c('FlameCenter', {
   init: function() {
     this.requires('Actor, spr_flame_center, Flame, SpriteAnimation')
-      .reel('FlameFlicker', 1000, 0, 1, 5);
+      .reel('FlameFlicker', 500, 0, 1, 5);
 
     this.animate('FlameFlicker', -1);
 
@@ -108,7 +108,7 @@ Crafty.c('FlameCenter', {
 Crafty.c('FlameBottom', {
   init: function() {
     this.requires('Actor, spr_flame_bottom, Flame, SpriteAnimation')
-      .reel('FlameFlicker', 1000, 0, 0, 5);
+      .reel('FlameFlicker', 500, 0, 0, 5);
 
     this.animate('FlameFlicker', -1);
 
@@ -122,7 +122,7 @@ Crafty.c('FlameBottom', {
 Crafty.c('FlameLeft', {
   init: function() {
     this.requires('Actor, spr_flame_left, Flame, SpriteAnimation')
-      .reel('FlameFlicker', 1000, 0, 3, 5);
+      .reel('FlameFlicker', 500, 0, 3, 5);
 
     this.animate('FlameFlicker', -1);
 
@@ -136,7 +136,7 @@ Crafty.c('FlameLeft', {
 Crafty.c('FlameRight', {
   init: function() {
     this.requires('Actor, spr_flame_right, Flame, SpriteAnimation')
-      .reel('FlameFlicker', 1000, 0, 5, 5);
+      .reel('FlameFlicker', 500, 0, 5, 5);
 
     this.animate('FlameFlicker', -1);
 
@@ -150,7 +150,7 @@ Crafty.c('FlameRight', {
 Crafty.c('FlameVertical', {
   init: function() {
     this.requires('Actor, spr_flame_vertical, Flame, SpriteAnimation')
-      .reel('FlameFlicker', 1000, 0, 8, 5);
+      .reel('FlameFlicker', 500, 0, 8, 5);
 
     this.animate('FlameFlicker', -1);
 
@@ -164,7 +164,7 @@ Crafty.c('FlameVertical', {
 Crafty.c('FlameHorizontal', {
   init: function() {
     this.requires('Actor, spr_flame_horizontal, Flame, SpriteAnimation')
-      .reel('FlameFlicker', 1000, 0, 4, 5);
+      .reel('FlameFlicker', 500, 0, 4, 5);
 
     this.animate('FlameFlicker', -1);
 
@@ -213,7 +213,7 @@ Crafty.c('XBrick', {
     this.requires('Actor, Solid, spr_xbrick, SpriteAnimation')
       .reel('BrickExplotion', 750, 0, 0, 9);
 
-    this.bind("AnimationEnd",function() {
+    this.bind("AnimationEnd", function() {
       this.destroy();
     });
 
